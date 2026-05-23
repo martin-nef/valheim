@@ -25,7 +25,7 @@ spec:
                       - oci-big-1
       containers:
         - name: valheim
-          image: lloesche/valheim-server:latest
+          image: lloesche/valheim-server:arm64
           imagePullPolicy: Always
           resources:
             requests:
