@@ -1,0 +1,76 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: valheim
+  namespace: valheim
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: valheim
+  template:
+    metadata:
+      labels:
+        app: valheim
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - oci-big-1
+      containers:
+        - name: valheim
+          image: lloesche/valheim-server:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "5.6Gi"
+            limits:
+              memory: "10Gi"
+          envFrom:
+            - configMapRef:
+                name: config
+            - secretRef:
+                name: secret
+          volumeMounts:
+            - name: data
+              mountPath: /config
+            - name: server-files
+              mountPath: /opt/valheim
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: "local-path"
+        resources:
+          requests:
+            storage: 2Gi
+    - metadata:
+        name: server-files
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: "local-path"
+        resources:
+          requests:
+            storage: 2Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service
+  namespace: valheim
+  labels:
+    app: valheim
+spec:
+  ports:
+    - port: 2456
+      name: valheim
+  clusterIP: None
+  selector:
+    app: valheim
