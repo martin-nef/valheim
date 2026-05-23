@@ -22,10 +22,10 @@ spec:
                   - key: kubernetes.io/hostname
                     operator: In
                     values:
-                      - oci-big-1
+                      - shitbox
       containers:
         - name: valheim
-          image: lloesche/valheim-server:arm64
+          image: lloesche/valheim-server:latest
           imagePullPolicy: Always
           resources:
             requests:
