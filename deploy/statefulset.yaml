@@ -50,7 +50,7 @@ spec:
         storageClassName: "local-path"
         resources:
           requests:
-            storage: 2Gi
+            storage: 3.5Gi
     - metadata:
         name: server-files
       spec:
@@ -58,7 +58,7 @@ spec:
         storageClassName: "local-path"
         resources:
           requests:
-            storage: 2Gi
+            storage: 1.5Gi
 ---
 apiVersion: v1
 kind: Service
