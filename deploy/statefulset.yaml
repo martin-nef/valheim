@@ -71,6 +71,7 @@ spec:
   ports:
     - port: 2456
       name: valheim
+      protocol: UDP
   clusterIP: None
   selector:
     app: valheim

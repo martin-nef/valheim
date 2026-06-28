@@ -1,5 +1,5 @@
 apiVersion: traefik.io/v1alpha1
-kind: IngressRouteTCP
+kind: IngressRouteUDP
 metadata:
   name: valheim
   namespace: valheim
@@ -7,7 +7,6 @@ spec:
   entryPoints:
     - valheim
   routes:
-    - match: HostSNI(`*`)
-      services:
+    - services:
         - name: service
           port: 2456
