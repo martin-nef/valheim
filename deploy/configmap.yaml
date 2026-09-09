@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: config
 data:
-  SERVER_NAME: Valheim Adventure
-  WORLD_NAME: RPGWorld
+  SERVER_NAME: Stray Dogs
+  WORLD_NAME: DeepNorth
   SERVER_PUBLIC: "false"
   BACKUPS_CRON: 0 0/2 * * *
