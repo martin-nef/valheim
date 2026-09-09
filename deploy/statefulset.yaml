@@ -23,6 +23,73 @@ spec:
                     operator: In
                     values:
                       - shitbox
+      initContainers:
+        # Installs the Thunderstore packages listed in MODS into the /config
+        # PVC. The server image rsyncs /config/bepinex/plugins/ into the live
+        # BepInEx install on every boot; the POST_BEPINEX_CONFIG_HOOK in the
+        # ConfigMap does the same for patchers and adds --delete, so dropping a
+        # mod from MODS actually uninstalls it.
+        - name: mods
+          image: alpine:3.20
+          envFrom:
+            - configMapRef:
+                name: config
+          command: ["/bin/sh", "-eu", "-c"]
+          args:
+            - |
+              apk add --no-cache jq >/dev/null
+
+              cfg=/config/bepinex
+              stage=/tmp/stage
+              rm -rf "$stage" "$cfg.new"
+              mkdir -p "$stage" "$cfg.new/plugins" "$cfg.new/patchers"
+
+              entries=$(printf '%s\n' "${MODS:-}" | sed 's/#.*//; s/[[:space:]]//g' | grep . || true)
+              for entry in $entries; do
+                ns=${entry%%/*}
+                rest=${entry#*/}
+                name=${rest%%/*}
+                case "$rest" in
+                  */*) ver=${rest#*/} ;;
+                  *)   ver=$(wget -qO- "https://thunderstore.io/api/experimental/package/$ns/$name/" \
+                             | jq -re .latest.version_number) ;;
+                esac
+                echo "==> $ns-$name-$ver"
+
+                d="$stage/$ns-$name"
+                mkdir -p "$d"
+                wget -qO "$d.zip" "https://gcdn.thunderstore.io/live/repository/packages/$ns-$name-$ver.zip"
+                # unzip exits 1 on warnings (e.g. backslash separators)
+                unzip -qo "$d.zip" -d "$d" || [ $? -eq 1 ]
+
+                # some packages store paths with backslashes, which unzip keeps literal
+                find "$d" -depth -name '*\\*' | while IFS= read -r f; do
+                  new=$(printf '%s' "$f" | tr '\\' '/')
+                  mkdir -p "$(dirname "$new")"
+                  mv "$f" "$new"
+                done
+
+                if [ -d "$d/plugins" ]; then
+                  cp -a "$d/plugins/." "$cfg.new/plugins/"
+                else
+                  # flat package: assemblies sit at the archive root
+                  [ -n "$(find "$d" -maxdepth 1 -name '*.dll' -print -quit)" ] \
+                    || { echo "no plugin assemblies in $ns-$name-$ver"; exit 1; }
+                  find "$d" -maxdepth 1 \( -name '*.dll' -o -name '*.deps.json' \) \
+                    -exec cp -a {} "$cfg.new/plugins/" \;
+                fi
+                [ -d "$d/patchers" ] && cp -a "$d/patchers/." "$cfg.new/patchers/" || true
+              done
+
+              # swap in only after every download succeeded
+              mkdir -p "$cfg"
+              rm -rf "$cfg/plugins" "$cfg/patchers"
+              mv "$cfg.new/plugins" "$cfg.new/patchers" "$cfg/"
+              rm -rf "$cfg.new" "$stage"
+              echo "installed:" && ls -1 "$cfg/plugins"
+          volumeMounts:
+            - name: data
+              mountPath: /config
       containers:
         - name: valheim
           image: lloesche/valheim-server:latest

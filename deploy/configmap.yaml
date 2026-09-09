@@ -7,3 +7,45 @@ data:
   WORLD_NAME: DeepNorth
   SERVER_PUBLIC: "false"
   BACKUPS_CRON: 0 0/2 * * *
+
+  # Mod loader. Mutually exclusive with VALHEIM_PLUS.
+  BEPINEX: "true"
+
+  # Thunderstore packages, one per line, as Author/Mod or Author/Mod/Version.
+  # Without a version the latest release is resolved at pod start.
+  # Dependencies are NOT resolved automatically - list them explicitly.
+  MODS: |
+    ValheimModding/YamlDotNet
+    ArgusMagnus/ServersideQoL
+    ArgusMagnus/ServersideQoL_JustSleep
+    ArgusMagnus/ServersideQoL_LetItFloat
+    ArgusMagnus/ServersideQoL_AutoPortalHub
+    ArgusMagnus/ServersideQoL_AutoProcess
+    ArgusMagnus/ServersideQoL_AutoDoors
+    ArgusMagnus/ServersideQoL_Skills
+    ArgusMagnus/ServersideQoL_SmartDefense
+    ArgusMagnus/ServersideQoL_ContainerSigns
+    ArgusMagnus/ServersideQoL_MultiplayerTweaks
+    ArgusMagnus/ServersideQoL_AutoStore
+    ArgusMagnus/ServersideQoL_TameAssist
+    ArgusMagnus/ServersideQoL_PortalProgression
+    Akoozie/ValheimTune
+
+  # Runs after the image writes BepInEx.cfg, on every boot and after every
+  # BepInEx update. env2cfg merges the VTCFG_* vars below into the existing
+  # ValheimTune cfg, touching only those keys. $plugins_path is a local of the
+  # image's write_bepinex_config, so this targets the live install either way.
+  POST_BEPINEX_CONFIG_HOOK: >-
+    /usr/local/bin/env2cfg --verbose
+    --config /config/bepinex/akoozie.valheimtune.cfg
+    --env-prefix VTCFG_ ;
+    rsync -a --delete --itemize-changes /config/bepinex/plugins/ "$plugins_path" ;
+    rsync -a --delete --itemize-changes /config/bepinex/patchers/ "$(dirname "$plugins_path")/patchers"
+
+  # ValheimTune tuning, per the mod author's recommendation.
+  VTCFG_Server_TargetFrameRate: "60"
+  VTCFG_Sync_SendWindowBytes: "32768"
+  VTCFG_Sync_MinHeadroomBytes: "4096"
+  VTCFG_Sync_AllPeersPerRound: "true"
+  VTCFG_Sync_RelayMinIntervalMs: "200"
+  VTCFG_Steam_SendRateMaxBytesPerSec: "1048576"
