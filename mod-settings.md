@@ -28,6 +28,33 @@ declarative — see `VTCFG_*` and `POST_BEPINEX_CONFIG_HOOK` in the ConfigMap.
 The image's `env2cfg` merges those into the cfg on every boot, so editing
 `akoozie.valheimtune.cfg` by hand will not survive a restart.
 
+## World modifiers
+
+Vanilla world modifiers are *not* mod settings, but they are server state that
+isn't otherwise in git, so they belong here. These are set declaratively via
+`SERVER_ARGS` in [deploy/configmap.yaml](deploy/configmap.yaml), which the image
+appends to the server command line.
+
+| Modifier | Default | Set to | Why |
+|---|---|---|---|
+| `Resources` | `Default` | `More` | One notch up on drop amounts. Fewer gathering trips per project; compounds with the smelter auto-feeding. |
+
+Options are `MuchLess`, `Less`, `Default`, `More`, `Most`.
+
+Two things to know about these:
+
+- **They are applied to the world on startup and written into the world file.**
+  Deleting the line from `SERVER_ARGS` does *not* revert the setting — the world
+  keeps whatever was last applied. To undo, set `-modifier Resources Default`
+  explicitly, start once, and only then remove the line.
+- **A misspelled name or value is loud, not silent.** The server logs
+  `Key enum couldn't be parsed!` / `Value enum couldn't be parsed!` and carries
+  on with the previous value, so check the logs after a change.
+
+Other modifiers available on the same syntax: `Combat`, `DeathPenalty`, `Raids`,
+`Portals`, `PlayerEvents`. Left at default deliberately — the game is balanced
+and tested at default, and we'd rather not stray far.
+
 ## Non-default values
 
 ### ArgusMagnus.ServersideQoL.Player.cfg
