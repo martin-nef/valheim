@@ -29,6 +29,7 @@ data:
     ArgusMagnus/ServersideQoL_AutoStore
     ArgusMagnus/ServersideQoL_TameAssist
     ArgusMagnus/ServersideQoL_PortalProgression
+    ArgusMagnus/ServersideQoL_Player
     Akoozie/ValheimTune
 
   # Runs after the image writes BepInEx.cfg, on every boot and after every
