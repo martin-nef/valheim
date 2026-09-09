@@ -40,10 +40,53 @@ spec:
               apk add --no-cache jq >/dev/null
 
               cfg=/config/bepinex
+              cache=/config/modcache
               stage=/tmp/stage
-              rm -rf "$stage" "$cfg.new"
-              mkdir -p "$stage" "$cfg.new/plugins" "$cfg.new/patchers"
+              tries=5
 
+              rm -rf "$stage" "$cfg.new"
+              mkdir -p "$stage" "$cache" "$cfg.new/plugins" "$cfg.new/patchers"
+
+              # Retries a command with a growing pause. Progress goes to stderr
+              # so it stays out of command substitutions.
+              retry() {
+                i=1
+                while :; do
+                  if "$@"; then return 0; fi
+                  if [ "$i" -ge "$tries" ]; then return 1; fi
+                  echo "    attempt $i/$tries failed, retrying in $((i * 5))s" >&2
+                  sleep $((i * 5))
+                  i=$((i + 1))
+                done
+              }
+
+              # An archive is only trusted once its central directory reads
+              # back, which lives at the end of the file - so a truncated or
+              # half-written download fails here instead of being cached.
+              usable() { [ -f "$1" ] && unzip -l "$1" >/dev/null 2>&1; }
+
+              # Downloads to .part and renames only on success, so the cache
+              # never holds a partial archive.
+              download() {
+                rm -f "$2" "$2.part"
+                if ! wget -qO "$2.part" "$1"; then
+                  rm -f "$2.part"
+                  return 1
+                fi
+                if ! usable "$2.part"; then
+                  echo "    incomplete archive discarded" >&2
+                  rm -f "$2.part"
+                  return 1
+                fi
+                mv "$2.part" "$2"
+              }
+
+              latest() {
+                wget -qO- "https://thunderstore.io/api/experimental/package/$1/$2/" \
+                  | jq -re .latest.version_number
+              }
+
+              wanted=""
               entries=$(printf '%s\n' "${MODS:-}" | sed 's/#.*//; s/[[:space:]]//g' | grep . || true)
               for entry in $entries; do
                 ns=${entry%%/*}
@@ -51,16 +94,38 @@ spec:
                 name=${rest%%/*}
                 case "$rest" in
                   */*) ver=${rest#*/} ;;
-                  *)   ver=$(wget -qO- "https://thunderstore.io/api/experimental/package/$ns/$name/" \
-                             | jq -re .latest.version_number) ;;
+                  *)   ver=$(retry latest "$ns" "$name" || true) ;;
                 esac
-                echo "==> $ns-$name-$ver"
+
+                if [ -z "$ver" ]; then
+                  # Thunderstore unreachable and no version pinned: fall back to
+                  # the newest cached copy so a restart during an outage boots.
+                  zip=$(ls -t "$cache/$ns-$name-"*.zip 2>/dev/null | head -1 || true)
+                  if [ -z "$zip" ]; then
+                    echo "cannot resolve $ns/$name and nothing cached"
+                    exit 1
+                  fi
+                  echo "==> $(basename "$zip" .zip) (cached, Thunderstore unreachable)"
+                else
+                  zip="$cache/$ns-$name-$ver.zip"
+                  if usable "$zip"; then
+                    echo "==> $ns-$name-$ver (cached)"
+                  else
+                    echo "==> $ns-$name-$ver"
+                    if ! retry download \
+                        "https://gcdn.thunderstore.io/live/repository/packages/$ns-$name-$ver.zip" \
+                        "$zip"; then
+                      echo "failed to download $ns-$name-$ver"
+                      exit 1
+                    fi
+                  fi
+                fi
+                wanted="$wanted $(basename "$zip")"
 
                 d="$stage/$ns-$name"
                 mkdir -p "$d"
-                wget -qO "$d.zip" "https://gcdn.thunderstore.io/live/repository/packages/$ns-$name-$ver.zip"
                 # unzip exits 1 on warnings (e.g. backslash separators)
-                unzip -qo "$d.zip" -d "$d" || [ $? -eq 1 ]
+                unzip -qo "$zip" -d "$d" || [ $? -eq 1 ]
 
                 # some packages store paths with backslashes, which unzip keeps literal
                 find "$d" -depth -name '*\\*' | while IFS= read -r f; do
@@ -81,7 +146,16 @@ spec:
                 [ -d "$d/patchers" ] && cp -a "$d/patchers/." "$cfg.new/patchers/" || true
               done
 
-              # swap in only after every download succeeded
+              # drop superseded versions and any leftover .part files
+              for f in "$cache"/*.zip "$cache"/*.part; do
+                [ -e "$f" ] || continue
+                case " $wanted " in
+                  *" $(basename "$f") "*) ;;
+                  *) echo "    removing stale $(basename "$f")"; rm -f "$f" ;;
+                esac
+              done
+
+              # swap in only after every package was staged successfully
               mkdir -p "$cfg"
               rm -rf "$cfg/plugins" "$cfg/patchers"
               mv "$cfg.new/plugins" "$cfg.new/patchers" "$cfg/"
