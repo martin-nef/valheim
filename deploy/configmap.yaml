@@ -9,10 +9,10 @@ data:
   BACKUPS_CRON: 0 0/2 * * *
 
   # Vanilla world modifier: resource drops one notch above default
-  # (MuchLess / Less / Default / More / Most). Applied to the existing world
+  # (MuchLess / Less / Default / More / MuchMore / Most). Applied to the existing world
   # on startup and saved into the world file - so removing this line does NOT
   # revert it; set "Resources Default" to go back.
-  SERVER_ARGS: -modifier Resources More
+  SERVER_ARGS: -modifier Resources Most
 
   # Mod loader. Mutually exclusive with VALHEIM_PLUS.
   BEPINEX: "true"

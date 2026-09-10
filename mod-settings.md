@@ -55,23 +55,6 @@ Other modifiers available on the same syntax: `Combat`, `DeathPenalty`, `Raids`,
 `Portals`, `PlayerEvents`. Left at default deliberately — the game is balanced
 and tested at default, and we'd rather not stray far.
 
-## World modifiers
-
-Vanilla world modifiers aren't mod settings, but they're server state that isn't
-otherwise in git. Set declaratively via `SERVER_ARGS` in
-[deploy/configmap.yaml](deploy/configmap.yaml).
-
-| Modifier | Default | Set to | Why |
-|---|---|---|---|
-| `Resources` | `Default` | `More` | One notch up on drop amounts. Fewer gathering trips per project. |
-
-Options are `MuchLess`, `Less`, `Default`, `More`, `Most`. Other modifiers on the
-same syntax: `Combat`, `DeathPenalty`, `Raids`, `Portals`, `PlayerEvents` — left
-at default deliberately.
-
-The setting is written into the world file, so removing the line does not revert
-it; set `-modifier Resources Default` and start once to undo.
-
 ## Non-default values
 
 ### ArgusMagnus.ServersideQoL.Player.cfg
