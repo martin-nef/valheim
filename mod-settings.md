@@ -37,7 +37,7 @@ appends to the server command line.
 
 | Modifier | Default | Set to | Why |
 |---|---|---|---|
-| `Resources` | `Default` | `More` | One notch up on drop amounts. Fewer gathering trips per project; compounds with the smelter auto-feeding. |
+| `Resources` | `Default` | `Most` | Maxed-out drop amounts. Fewer gathering trips per project; compounds with the smelter auto-feeding. |
 
 Options are `MuchLess`, `Less`, `Default`, `More`, `Most`.
 
