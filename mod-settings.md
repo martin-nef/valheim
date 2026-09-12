@@ -125,6 +125,17 @@ fights feel.
 Note the author documents no reason for any of these being off by default; the
 reasoning above is ours.
 
+### ArgusMagnus.ServersideQoL.Skills.cfg
+
+| Setting | Default | Set to | Why |
+|---|---|---|---|
+| `[Pickaxe] RockCollapseThresholdAtMinSkill` | `100` | `40` | Percentage of a rock/ore deposit's parts that must be destroyed before the rest collapses, at pickaxe skill 0. Scales linearly to `RockCollapseThresholdAtMaxSkill` (kept at `0`) at skill 100. At the default, a fresh character gets no benefit at all and the feature only pays off late; starting at 40% means mining is already ~2.5x faster from the first pickaxe. |
+
+Edited 2026-09-12 while the server was running. The ServersideQoL plugins bind
+their config once at startup and have no file watcher or reload, so this takes
+effect on the next server restart (the image restarts the server nightly at
+05:10). They also never write the cfg back at runtime, so a live edit is safe.
+
 ## Notable defaults we are keeping
 
 Worth knowing about, since they're already doing a lot of work:
@@ -134,9 +145,6 @@ Worth knowing about, since they're already doing a lot of work:
   after Yagluth, flametal after Fader. Setting a metal to `--` removes its
   requirement entirely. Left as-is: this is the one grind that's doing real
   pacing work, and single metals can be relaxed later if one becomes a slog.
-- **Skills `[Pickaxe]`** already scales rock-collapse threshold from 100% at
-  skill 0 down to 0% at skill 100, so mining gets substantially faster as the
-  skill climbs.
 - **AutoProcess** already auto-feeds smelters from containers within 4m.
   `CapacityMultiplier` and `TimePerProductMultiplier` are the knobs if ore
   throughput becomes the bottleneck.
