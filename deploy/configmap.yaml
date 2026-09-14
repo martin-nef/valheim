@@ -35,6 +35,7 @@ data:
     ArgusMagnus/ServersideQoL_TameAssist
     ArgusMagnus/ServersideQoL_PortalProgression
     ArgusMagnus/ServersideQoL_Player
+    ValheimModding/Jotunn
     MidnightMods/NetworkPerformanceSystem
   #  ArgusMagnus/ServersideQoL_MultiplayerTweaks
   #  Akoozie/ValheimTune
@@ -51,9 +52,9 @@ data:
     rsync -a --delete --itemize-changes /config/bepinex/patchers/ "$(dirname "$plugins_path")/patchers"
 
   # ValheimTune tuning, per the mod author's recommendation.
-  VTCFG_Server_TargetFrameRate: "60"
-  VTCFG_Sync_SendWindowBytes: "32768"
-  VTCFG_Sync_MinHeadroomBytes: "4096"
-  VTCFG_Sync_AllPeersPerRound: "true"
-  VTCFG_Sync_RelayMinIntervalMs: "200"
-  VTCFG_Steam_SendRateMaxBytesPerSec: "1048576"
+  # VTCFG_Server_TargetFrameRate: "60"
+  # VTCFG_Sync_SendWindowBytes: "32768"
+  # VTCFG_Sync_MinHeadroomBytes: "4096"
+  # VTCFG_Sync_AllPeersPerRound: "true"
+  # VTCFG_Sync_RelayMinIntervalMs: "200"
+  # VTCFG_Steam_SendRateMaxBytesPerSec: "1048576"
