@@ -17,7 +17,7 @@ over your edit.
 ```sh
 kubectl -n valheim exec valheim-0 -c valheim -- supervisorctl stop valheim-server
 kubectl -n valheim exec -it valheim-0 -c valheim -- vi /config/bepinex/<file>.cfg
-kubectl -n valheim rollout restart statefulset/valheim
+kubectl -n valheim delete pod valheim-0   # not rollout restart — see CLAUDE.md
 ```
 
 Deleting a `.cfg` regenerates it at defaults on next start, which is the way
