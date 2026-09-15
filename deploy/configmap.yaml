@@ -37,6 +37,8 @@ data:
     ArgusMagnus/ServersideQoL_Player
     ValheimModding/Jotunn
     MidnightMods/NetworkPerformanceSystem
+    Sfantul/PortalGhostFix
+  #  VerdantsAscent/FiresGhettoNetworking
 
   POST_BEPINEX_CONFIG_HOOK: >-
     rsync -a --delete --itemize-changes /config/bepinex/plugins/ "$plugins_path" ;
