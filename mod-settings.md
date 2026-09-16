@@ -147,12 +147,12 @@ reasoning above is ours.
 | `OpenBackpackEmote` | `Wave`          | `Vibe` | Wave is used socially; Vibe is a dedicated trigger so the backpack doesn't pop open mid-greeting. |
 | `MaxBackpackWeight` | `0` (unlimited) | `300` | Weight cap so the backpack is a pocket for odds and ends, not a second unlimited inventory. |
 
-### ArgusMagnus.ServersideQoL.LetItFloat.cfg
+### ArgusMagnus.ServersideQoL.AutoDoors.cfg
 
-| Setting     | Default  | Set to    | Why                                                                                                                                                                           |
-| ----------- | -------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Enabled` | `true` | `false` | Disabled 2026-09-16 after its ItemDropProcessor hit a `StackOverflowException` (`Processor.PlaceObject` recursing on a sunk `ScaleHide`). Takes effect at the next restart. |
-
+| Setting                      | Default | Set to | Why                                                                                                   |
+| ---------------------------- | ------- | ------ | ----------------------------------------------------------------------------------------------------- |
+| `AutoCloseMinPlayerDistance` | `4`     | `8`    | Doors stay open while anyone is still nearby, so they don't shut on a player who's just stepped away. |
+| `AutoCloseMinOpenSeconds`    | `2`     | `10`   | Doors stay open long enough to carry things through or for a group to follow, instead of closing almost immediately. |
 
 ## Notable defaults we are keeping
 
