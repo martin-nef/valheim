@@ -145,8 +145,7 @@ reasoning above is ours.
 | Setting               | Default           | Set to   | Why                                                                                               |
 | --------------------- | ----------------- | -------- | ------------------------------------------------------------------------------------------------- |
 | `OpenBackpackEmote` | `Wave`          | `Vibe` | Wave is used socially; Vibe is a dedicated trigger so the backpack doesn't pop open mid-greeting. |
-| `MaxBackpackWeight` | `0` (unlimited) | `100`  | Weight cap so the backpack is a pocket for odds and ends, not a second unlimited inventory.       |
-| `InitialBackpackSlots` | `4` | `0` | No backpack until the first boss is down; slots are earned per kill via `AdditionalBackpackSlotsPerDefeatedBoss`. |
+| `MaxBackpackWeight` | `0` (unlimited) | `300` | Weight cap so the backpack is a pocket for odds and ends, not a second unlimited inventory. |
 
 
 ## Notable defaults we are keeping
