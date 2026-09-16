@@ -35,8 +35,8 @@ isn't otherwise in git, so they belong here. These are set declaratively via
 `SERVER_ARGS` in [deploy/configmap.yaml](deploy/configmap.yaml), which the image
 appends to the server command line.
 
-| Modifier | Default | Set to | Why |
-|---|---|---|---|
+| Modifier      | Default     | Set to   | Why                                                                                                 |
+| ------------- | ----------- | -------- | --------------------------------------------------------------------------------------------------- |
 | `Resources` | `Default` | `Most` | Maxed-out drop amounts. Fewer gathering trips per project; compounds with the smelter auto-feeding. |
 
 Options are `MuchLess`, `Less`, `Default`, `More`, `Most`.
@@ -62,16 +62,17 @@ and tested at default, and we'd rather not stray far.
 Installed 2026-09-09 for the carry-weight option. Every feature in this mod is
 off by default.
 
-| Setting | Default | Set to | Why |
-|---|---|---|---|
-| `CanSacrificeMegingjord` | `false` | `true` | Destroy a megingjord in an obliterator to permanently unlock its carry-weight bonus. Costs the item and frees the belt slot, rather than handing out free capacity. |
-| `InfiniteEncumberedStamina` | `false` | `true` | Being over-weight is slow instead of a full stop. |
-| `InfiniteBuildingStamina` | `false` | `true` | |
-| `InfiniteFarmingStamina` | `false` | `true` | |
-| `InfiniteMiningStamina` | `false` | `true` | |
-| `InfiniteWoodCuttingStamina` | `false` | `true` | |
-| `InfiniteSneakingStamina` | `false` | `true` | |
-| `InfiniteSwimmingStamina` | `false` | `true` | |
+| Setting                        | Default   | Set to   | Why                                                                                                                                                                 |
+| ------------------------------ | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CanSacrificeMegingjord`     | `false` | `true` | Destroy a megingjord in an obliterator to permanently unlock its carry-weight bonus. Costs the item and frees the belt slot, rather than handing out free capacity. |
+| `CanSacrificeCryptKey`       | `false` | `true` | Destroy a crypt key in an obliterator to permanently open sunken crypt doors, freeing the inventory slot.                                                           |
+| `InfiniteEncumberedStamina`  | `false` | `true` | Being over-weight is slow instead of a full stop.                                                                                                                   |
+| `InfiniteBuildingStamina`    | `false` | `true` |                                                                                                                                                                     |
+| `InfiniteFarmingStamina`     | `false` | `true` |                                                                                                                                                                     |
+| `InfiniteMiningStamina`      | `false` | `true` |                                                                                                                                                                     |
+| `InfiniteWoodCuttingStamina` | `false` | `true` |                                                                                                                                                                     |
+| `InfiniteSneakingStamina`    | `false` | `true` |                                                                                                                                                                     |
+| `InfiniteSwimmingStamina`    | `false` | `true` |                                                                                                                                                                     |
 
 The infinite-stamina options don't disable the stamina bar — it still drains,
 and tops back up just enough to continue when nearly empty. Combat stamina is
@@ -80,20 +81,20 @@ world's `StaminaRate` global key instead.
 
 ### ArgusMagnus.ServersideQoL.AutoPortalHub.cfg
 
-| Setting | Default | Set to | Why |
-|---|---|---|---|
-| `AutoNameNewPortals` | `false` | `true` | The hub identifies portals by tag; untagged portals get an entry with a blank sign. Auto-naming gives `Meadows 01`, `Swamp 03` etc. for free. |
+| Setting                | Default   | Set to   | Why                                                                                                                                              |
+| ---------------------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `AutoNameNewPortals` | `false` | `true` | The hub identifies portals by tag; untagged portals get an entry with a blank sign. Auto-naming gives`Meadows 01`, `Swamp 03` etc. for free. |
 
 ### ArgusMagnus.ServersideQoL.JustSleep.cfg
 
-| Setting | Default | Set to | Why |
-|---|---|---|---|
+| Setting                      | Default | Set to | Why                                                                |
+| ---------------------------- | ------- | ------ | ------------------------------------------------------------------ |
 | `RequiredPlayerPercentage` | `100` | `50` | At 100 a single AFK player blocks skipping the night for everyone. |
 
 ### ArgusMagnus.ServersideQoL.AutoStore.cfg
 
-| Setting | Default | Set to | Why |
-|---|---|---|---|
+| Setting                               | Default      | Set to       | Why                                                                             |
+| ------------------------------------- | ------------ | ------------ | ------------------------------------------------------------------------------- |
 | `StackInventoryIntoContainersEmote` | `-1` (off) | `ThumbsUp` | Emote to stack your inventory into nearby chests that already hold those items. |
 
 Deliberately left off: `AutoPickup`. It would drag dropped items into chests
@@ -111,10 +112,10 @@ Both of these reassign Valheim's network ownership of an object to a specific
 player, so the person who cares most about an object's behaviour is the one
 simulating it.
 
-| Setting | Default | Set to | Why |
-|---|---|---|---|
-| `AssignShipsToCaptain` | `false` | `true` | Ownership to whoever is steering. Removes desync-driven collisions with terrain and waves (not with mobs). |
-| `AssignInteractablesToClosestPlayer` | `false` | `true` | Smelters, cooking stations etc. to the nearest player, to stop losing materials to networking issues. |
+| Setting                                | Default   | Set to   | Why                                                                                                        |
+| -------------------------------------- | --------- | -------- | ---------------------------------------------------------------------------------------------------------- |
+| `AssignShipsToCaptain`               | `false` | `true` | Ownership to whoever is steering. Removes desync-driven collisions with terrain and waves (not with mobs). |
+| `AssignInteractablesToClosestPlayer` | `false` | `true` | Smelters, cooking stations etc. to the nearest player, to stop losing materials to networking issues.      |
 
 Deliberately left off: `AssignMobsToClosestPlayer`. Ships and workstations have
 one natural owner, but "closest player" is ambiguous when several people fight
@@ -127,14 +128,26 @@ reasoning above is ours.
 
 ### ArgusMagnus.ServersideQoL.Skills.cfg
 
-| Setting | Default | Set to | Why |
-|---|---|---|---|
-| `[Pickaxe] RockCollapseThresholdAtMinSkill` | `100` | `40` | Percentage of a rock/ore deposit's parts that must be destroyed before the rest collapses, at pickaxe skill 0. Scales linearly to `RockCollapseThresholdAtMaxSkill` (kept at `0`) at skill 100. At the default, a fresh character gets no benefit at all and the feature only pays off late; starting at 40% means mining is already ~2.5x faster from the first pickaxe. |
+| Setting                                       | Default | Set to | Why                                                                                                                                                                                                                                                                                                                                                                          |
+| --------------------------------------------- | ------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `[Pickaxe] RockCollapseThresholdAtMinSkill` | `100` | `40` | Percentage of a rock/ore deposit's parts that must be destroyed before the rest collapses, at pickaxe skill 0. Scales linearly to`RockCollapseThresholdAtMaxSkill` (kept at `0`) at skill 100. At the default, a fresh character gets no benefit at all and the feature only pays off late; starting at 40% means mining is already ~2.5x faster from the first pickaxe. |
 
-Edited 2026-09-12 while the server was running. The ServersideQoL plugins bind
-their config once at startup and have no file watcher or reload, so this takes
-effect on the next server restart (the image restarts the server nightly at
-05:10). They also never write the cfg back at runtime, so a live edit is safe.
+
+### ArgusMagnus.ServersideQoL.TameAssist.cfg
+
+| Setting                                | Default   | Set to   | Why                                                                                                        |
+| -------------------------------------- | --------- | -------- | ---------------------------------------------------------------------------------------------------------- |
+| `[TameAssist] MakeCommandable`       | `false` | `true` | Every tame can be told to follow/stay like a wolf, so boars and lox can be moved around instead of herded. |
+| `[TameAssist] FedDurationMultiplier` | `1`     | `4`    | Tames stay fed four times as long after eating, so pens need topping up far less often.                    |
+
+### ArgusMagnus.ServersideQoL.Backpack.cfg
+
+| Setting               | Default           | Set to   | Why                                                                                               |
+| --------------------- | ----------------- | -------- | ------------------------------------------------------------------------------------------------- |
+| `OpenBackpackEmote` | `Wave`          | `Vibe` | Wave is used socially; Vibe is a dedicated trigger so the backpack doesn't pop open mid-greeting. |
+| `MaxBackpackWeight` | `0` (unlimited) | `100`  | Weight cap so the backpack is a pocket for odds and ends, not a second unlimited inventory.       |
+| `InitialBackpackSlots` | `4` | `0` | No backpack until the first boss is down; slots are earned per kill via `AdditionalBackpackSlotsPerDefeatedBoss`. |
+
 
 ## Notable defaults we are keeping
 
