@@ -24,7 +24,6 @@ data:
     ValheimModding/YamlDotNet
     ArgusMagnus/ServersideQoL
     ArgusMagnus/ServersideQoL_JustSleep
-    ArgusMagnus/ServersideQoL_LetItFloat
     ArgusMagnus/ServersideQoL_AutoPortalHub
     ArgusMagnus/ServersideQoL_AutoProcess
     ArgusMagnus/ServersideQoL_AutoDoors
@@ -40,6 +39,7 @@ data:
     MidnightMods/NetworkPerformanceSystem
     Sfantul/PortalGhostFix
   #  VerdantsAscent/FiresGhettoNetworking
+  #  ArgusMagnus/ServersideQoL_LetItFloat
 
   POST_BEPINEX_CONFIG_HOOK: >-
     rsync -a --delete --itemize-changes /config/bepinex/plugins/ "$plugins_path" ;
