@@ -1,7 +1,7 @@
 # Mod settings
 
 Which mods are installed is declarative: the `MODS` list in
-[deploy/configmap.yaml](deploy/configmap.yaml), installed by the `mods`
+[deploy/mods.txt](deploy/mods.txt), installed by the `mods`
 initContainer in [deploy/statefulset.yaml](deploy/statefulset.yaml).
 
 Their *settings* are not. The BepInEx `.cfg` files under `/config/bepinex/` on
@@ -32,7 +32,7 @@ The image's `env2cfg` merges those into the cfg on every boot, so editing
 
 Vanilla world modifiers are *not* mod settings, but they are server state that
 isn't otherwise in git, so they belong here. These are set declaratively via
-`SERVER_ARGS` in [deploy/configmap.yaml](deploy/configmap.yaml), which the image
+`SERVER_ARGS` in [deploy/config.env](deploy/config.env), which the image
 appends to the server command line.
 
 | Modifier      | Default     | Set to   | Why                                                                                                 |

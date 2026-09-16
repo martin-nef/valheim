@@ -4,7 +4,17 @@ namespace: valheim
 
 resources:
   - namespace.yaml
-  - configmap.yaml
   - statefulset.yaml
   - secret.yaml
   - ingress.yaml
+
+# Generated rather than a plain manifest so the name gets a content hash
+# suffix (config-<hash>). Kustomize rewrites the configMapRefs in the
+# StatefulSet to match, so any change to config.env or mods.txt alters the pod
+# template and Flux rolls the pod - no manual restart needed for config edits.
+configMapGenerator:
+  - name: config
+    envs:
+      - config.env
+    files:
+      - MODS=mods.txt

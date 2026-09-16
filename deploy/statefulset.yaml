@@ -23,6 +23,7 @@ spec:
                     operator: In
                     values:
                       - shitbox
+      terminationGracePeriodSeconds: 35
       initContainers:
         # Installs the Thunderstore packages listed in MODS into the /config
         # PVC. The server image rsyncs /config/bepinex/plugins/ into the live
@@ -178,6 +179,18 @@ spec:
                 name: config
             - secretRef:
                 name: secret
+          # Save and stop the game before the container is signalled. A bare
+          # SIGTERM would reach the same save path via supervisord, but doing
+          # it here keeps syslogd (which carries the game's log output) alive
+          # until the save is done, and makes the wait explicit and bounded.
+          # If the timeout fires the pod is torn down as it would be anyway.
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - /bin/sh
+                  - -c
+                  - timeout "29" supervisorctl stop valheim-server
           volumeMounts:
             - name: data
               mountPath: /config

@@ -8,12 +8,12 @@ set -euo pipefail
 NS=valheim
 POD=valheim-0
 CTR=valheim
-WORLD=$(sed -n 's/^ *WORLD_NAME: *//p' "$(dirname "$0")/../deploy/configmap.yaml")
+WORLD=$(sed -n 's/^WORLD_NAME=//p' "$(dirname "$0")/../deploy/config.env")
 WORLD_DIR="/config/worlds_local/$WORLD"
 
 kx() { kubectl -n "$NS" exec "$POD" -c "$CTR" -- "$@"; }
 
-echo "== Stopping valheim-server (triggers world save; pod grace period is only 30s)"
+echo "== Stopping valheim-server (triggers world save; verified below before the pod is rolled)"
 kx supervisorctl stop valheim-server
 
 echo "== Verifying $WORLD saved"

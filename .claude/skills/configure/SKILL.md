@@ -4,7 +4,7 @@ description: Show and change a mod's BepInEx settings — reads the mod's .cfg f
 ---
 
 The argument is a mod name, usually in the Thunderstore `Author/Name` form
-from the `MODS` list in `deploy/configmap.yaml`. Steps:
+from `deploy/mods.txt`. Steps:
 
 ## 1. Find the cfg file
 
@@ -24,7 +24,7 @@ do, show the listing and ask. If the mod is not in `MODS` at all, say so and
 stop — configuring a mod that isn't installed is a mistake.
 
 Special case: `akoozie.valheimtune.cfg` is **not** edited in place. Its
-values are declarative via `VTCFG_*` in `deploy/configmap.yaml` and
+values are declarative via `VTCFG_*` in `deploy/config.env` and
 regenerated on every boot (see mod-settings.md). Present the knobs the same
 way, but apply changes as a git edit to the ConfigMap instead of step 3.
 

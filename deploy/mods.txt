@@ -1,0 +1,23 @@
+# Thunderstore packages, one per line, as Author/Mod or Author/Mod/Version.
+# Without a version the latest release is resolved at pod start.
+# Dependencies are NOT resolved automatically - list them explicitly.
+# Becomes the MODS key of the `config` ConfigMap (see kustomization.yaml).
+ValheimModding/YamlDotNet
+ArgusMagnus/ServersideQoL
+ArgusMagnus/ServersideQoL_JustSleep
+ArgusMagnus/ServersideQoL_AutoPortalHub
+ArgusMagnus/ServersideQoL_AutoProcess
+ArgusMagnus/ServersideQoL_AutoDoors
+ArgusMagnus/ServersideQoL_Skills
+ArgusMagnus/ServersideQoL_SmartDefense
+ArgusMagnus/ServersideQoL_ContainerSigns
+ArgusMagnus/ServersideQoL_AutoStore
+ArgusMagnus/ServersideQoL_TameAssist
+ArgusMagnus/ServersideQoL_PortalProgression
+ArgusMagnus/ServersideQoL_Player
+ArgusMagnus/ServersideQoL_Backpack
+ValheimModding/Jotunn
+MidnightMods/NetworkPerformanceSystem
+Sfantul/PortalGhostFix
+#VerdantsAscent/FiresGhettoNetworking
+#ArgusMagnus/ServersideQoL_LetItFloat
