@@ -2,6 +2,7 @@
 # Without a version the latest release is resolved at pod start.
 # Dependencies are NOT resolved automatically - list them explicitly.
 # Becomes the MODS key of the `config` ConfigMap (see kustomization.yaml).
+
 ValheimModding/YamlDotNet
 ArgusMagnus/ServersideQoL
 ArgusMagnus/ServersideQoL_AutoDoors
@@ -17,8 +18,10 @@ ArgusMagnus/ServersideQoL_PortalProgression
 ArgusMagnus/ServersideQoL_Skills
 ArgusMagnus/ServersideQoL_SmartDefense
 ArgusMagnus/ServersideQoL_TameAssist
+
 ValheimModding/Jotunn
 MidnightMods/NetworkPerformanceSystem
-Sfantul/PortalGhostFix
-#VerdantsAscent/FiresGhettoNetworking
 
+Sfantul/PortalGhostFix
+
+#VerdantsAscent/FiresGhettoNetworking
