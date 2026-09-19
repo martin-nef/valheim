@@ -19,9 +19,9 @@ ArgusMagnus/ServersideQoL_Skills
 ArgusMagnus/ServersideQoL_SmartDefense
 ArgusMagnus/ServersideQoL_TameAssist
 
-ValheimModding/Jotunn
-MidnightMods/NetworkPerformanceSystem
+#ValheimModding/Jotunn
+#MidnightMods/NetworkPerformanceSystem
 
 Sfantul/PortalGhostFix
 
-#VerdantsAscent/FiresGhettoNetworking
+VerdantsAscent/FiresGhettoNetworking
