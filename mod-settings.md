@@ -145,7 +145,8 @@ reasoning above is ours.
 | Setting               | Default           | Set to   | Why                                                                                               |
 | --------------------- | ----------------- | -------- | ------------------------------------------------------------------------------------------------- |
 | `OpenBackpackEmote` | `Wave`          | `Vibe` | Wave is used socially; Vibe is a dedicated trigger so the backpack doesn't pop open mid-greeting. |
-| `MaxBackpackWeight` | `0` (unlimited) | `300` | Weight cap so the backpack is a pocket for odds and ends, not a second unlimited inventory. |
+| `MaxBackpackWeight` | `0` (unlimited) | `600` | Weight cap so the backpack is a pocket for odds and ends, not a second unlimited inventory. Raised from 300 on 2026-09-19. |
+| `BackpackOnDeath` | `SameAsInventory` | `Keep` | Backpack contents survive death instead of going to the tombstone, so odds and ends aren't lost on a corpse run. |
 
 ### ArgusMagnus.ServersideQoL.AutoDoors.cfg
 

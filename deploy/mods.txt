@@ -22,6 +22,4 @@ ArgusMagnus/ServersideQoL_TameAssist
 ValheimModding/Jotunn
 MidnightMods/NetworkPerformanceSystem
 
-Sfantul/PortalGhostFix
-
 #VerdantsAscent/FiresGhettoNetworking
