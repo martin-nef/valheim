@@ -88,12 +88,6 @@ world's `StaminaRate` global key instead.
 | ---------------------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `AutoNameNewPortals` | `false` | `true` | The hub identifies portals by tag; untagged portals get an entry with a blank sign. Auto-naming gives`Meadows 01`, `Swamp 03` etc. for free. |
 
-### ArgusMagnus.ServersideQoL.JustSleep.cfg
-
-| Setting                      | Default | Set to | Why                                                                |
-| ---------------------------- | ------- | ------ | ------------------------------------------------------------------ |
-| `RequiredPlayerPercentage` | `100` | `50` | At 100 a single AFK player blocks skipping the night for everyone. |
-
 ### ArgusMagnus.ServersideQoL.AutoStore.cfg
 
 | Setting                               | Default      | Set to       | Why                                                                             |
