@@ -152,7 +152,16 @@ reasoning above is ours.
 | Setting                      | Default | Set to | Why                                                                                                   |
 | ---------------------------- | ------- | ------ | ----------------------------------------------------------------------------------------------------- |
 | `AutoCloseMinPlayerDistance` | `4`     | `8`    | Doors stay open while anyone is still nearby, so they don't shut on a player who's just stepped away. |
-| `AutoCloseMinOpenSeconds`    | `2`     | `10`   | Doors stay open long enough to carry things through or for a group to follow, instead of closing almost immediately. |
+| `AutoCloseMinOpenSeconds`    | `2`     | `30`   | Doors stay open long enough to carry things through or for a group to follow, instead of closing almost immediately. |
+
+### com.Fire.FiresGhettoNetworkMod.cfg
+
+Enabled 2026-09-19. Unlike the ServersideQoL family this mod may rewrite its
+cfg on shutdown, so edit it with the game stopped (`scripts/restart.sh` flow).
+
+| Setting                         | Default | Set to | Why                                                                                                                         |
+| ------------------------------- | ------- | ------ | --------------------------------------------------------------------------------------------------------------------------- |
+| `Enable Server-Side Simulation` | `false` | `true` | Make the dedicated server authoritative over zones, monster AI and events. The EXPERIMENTAL ZDO ownership-transfer toggles stay off, so peers still own their ZDOs (`sim: ON · own: vanilla peer` in the FGN load summary). |
 
 ## Notable defaults we are keeping
 
