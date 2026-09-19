@@ -38,20 +38,23 @@ appends to the server command line.
 | Modifier      | Default     | Set to   | Why                                                                                                 |
 | ------------- | ----------- | -------- | --------------------------------------------------------------------------------------------------- |
 | `Resources` | `Default` | `Most` | Maxed-out drop amounts. Fewer gathering trips per project; compounds with the smelter auto-feeding. |
+| `DeathPenalty` | `Default` | `Easy` | One notch below default: smaller skill loss on death. Softens the sting of a bad run without removing the corpse run. |
 
-Options are `MuchLess`, `Less`, `Default`, `More`, `Most`.
+Options are `MuchLess`, `Less`, `Default`, `More`, `Most` for `Resources`, and
+`Casual`, `VeryEasy`, `Easy`, `Default`, `Hard`, `Hardcore` for `DeathPenalty`.
 
 Two things to know about these:
 
 - **They are applied to the world on startup and written into the world file.**
-  Deleting the line from `SERVER_ARGS` does *not* revert the setting — the world
-  keeps whatever was last applied. To undo, set `-modifier Resources Default`
-  explicitly, start once, and only then remove the line.
+  Deleting a modifier from `SERVER_ARGS` does *not* revert the setting — the
+  world keeps whatever was last applied. To undo, set it to `Default`
+  explicitly (e.g. `-modifier DeathPenalty Default`), start once, and only then
+  remove it.
 - **A misspelled name or value is loud, not silent.** The server logs
   `Key enum couldn't be parsed!` / `Value enum couldn't be parsed!` and carries
   on with the previous value, so check the logs after a change.
 
-Other modifiers available on the same syntax: `Combat`, `DeathPenalty`, `Raids`,
+Other modifiers available on the same syntax: `Combat`, `Raids`,
 `Portals`, `PlayerEvents`. Left at default deliberately — the game is balanced
 and tested at default, and we'd rather not stray far.
 
