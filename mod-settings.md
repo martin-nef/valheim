@@ -149,7 +149,7 @@ reasoning above is ours.
 
 | Setting                      | Default | Set to | Why                                                                                                   |
 | ---------------------------- | ------- | ------ | ----------------------------------------------------------------------------------------------------- |
-| `AutoCloseMinPlayerDistance` | `4`     | `8`    | Doors stay open while anyone is still nearby, so they don't shut on a player who's just stepped away. |
+| `Enabled`                    | `true`  | `false` | TODO: reason not given yet.                                                                          |
 | `AutoCloseMinOpenSeconds`    | `2`     | `30`   | Doors stay open long enough to carry things through or for a group to follow, instead of closing almost immediately. |
 
 ### com.Fire.FiresGhettoNetworkMod.cfg

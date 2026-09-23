@@ -5,7 +5,7 @@
 
 ValheimModding/YamlDotNet
 ArgusMagnus/ServersideQoL
-ArgusMagnus/ServersideQoL_AutoDoors
+#ArgusMagnus/ServersideQoL_AutoDoors
 ArgusMagnus/ServersideQoL_AutoPortalHub
 ArgusMagnus/ServersideQoL_AutoProcess
 ArgusMagnus/ServersideQoL_AutoStore
