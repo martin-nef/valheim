@@ -161,6 +161,18 @@ cfg on shutdown, so edit it with the game stopped (`scripts/restart.sh` flow).
 | ------------------------------- | ------- | ------ | --------------------------------------------------------------------------------------------------------------------------- |
 | `Enable Server-Side Simulation` | `false` | `true` | Make the dedicated server authoritative over zones, monster AI and events. The EXPERIMENTAL ZDO ownership-transfer toggles stay off, so peers still own their ZDOs (`sim: ON · own: vanilla peer` in the FGN load summary). |
 
+### torokal.afkmanager.cfg
+
+Installed 2026-09-25 (`Torokal/AFKManager`). Not part of the ServersideQoL
+family, so edit it with the game stopped.
+
+| Setting                | Default | Set to  | Why                         |
+| ---------------------- | ------- | ------- | --------------------------- |
+| `AfkAfterMinutes`      | `10`    | `5`     | TODO: reason not given yet. |
+| `AnnounceInChat`       | `true`  | `false` | TODO: reason not given yet. |
+| `AnnounceNotification` | `true`  | `false` | TODO: reason not given yet. |
+| `ManualAfkEmote`       | `rest`  | `sit`   | TODO: reason not given yet. |
+
 ## Notable defaults we are keeping
 
 Worth knowing about, since they're already doing a lot of work:
