@@ -18,6 +18,7 @@ ArgusMagnus/ServersideQoL_PortalProgression
 ArgusMagnus/ServersideQoL_Skills
 ArgusMagnus/ServersideQoL_SmartDefense
 ArgusMagnus/ServersideQoL_TameAssist
+Torokal/AFKManager
 
 ValheimModding/Jotunn
 MidnightMods/NetworkPerformanceSystem
