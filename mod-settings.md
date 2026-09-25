@@ -173,6 +173,12 @@ family, so edit it with the game stopped.
 | `AnnounceNotification` | `true`  | `false` | TODO: reason not given yet. |
 | `ManualAfkEmote`       | `rest`  | `sit`   | TODO: reason not given yet. |
 
+### ArgusMagnus.ServersideQoL.PortalProgression.cfg
+
+| Setting       | Default | Set to | Why                         |
+| ------------- | ------- | ------ | --------------------------- |
+| `PortalRange` | `4`     | `2`    | TODO: reason not given yet. |
+
 ## Notable defaults we are keeping
 
 Worth knowing about, since they're already doing a lot of work:
