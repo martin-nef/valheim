@@ -35,10 +35,10 @@ isn't otherwise in git, so they belong here. These are set declaratively via
 `SERVER_ARGS` in [deploy/config.env](deploy/config.env), which the image
 appends to the server command line.
 
-| Modifier      | Default     | Set to   | Why                                                                                                 |
-| ------------- | ----------- | -------- | --------------------------------------------------------------------------------------------------- |
-| `Resources` | `Default` | `Most` | Maxed-out drop amounts. Fewer gathering trips per project; compounds with the smelter auto-feeding. |
-| `DeathPenalty` | `Default` | `Easy` | One notch below default: smaller skill loss on death. Softens the sting of a bad run without removing the corpse run. |
+| Modifier      | Default     | Set to   |
+| ------------- | ----------- | -------- |
+| `Resources` | `Default` | `Most` |
+| `DeathPenalty` | `Default` | `Easy` |
 
 Options are `MuchLess`, `Less`, `Default`, `More`, `Most` for `Resources`, and
 `Casual`, `VeryEasy`, `Easy`, `Default`, `Hard`, `Hardcore` for `DeathPenalty`.
@@ -65,17 +65,17 @@ and tested at default, and we'd rather not stray far.
 Installed 2026-09-09 for the carry-weight option. Every feature in this mod is
 off by default.
 
-| Setting                        | Default   | Set to   | Why                                                                                                                                                                 |
-| ------------------------------ | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `CanSacrificeMegingjord`     | `false` | `true` | Destroy a megingjord in an obliterator to permanently unlock its carry-weight bonus. Costs the item and frees the belt slot, rather than handing out free capacity. |
-| `CanSacrificeCryptKey`       | `false` | `true` | Destroy a crypt key in an obliterator to permanently open sunken crypt doors, freeing the inventory slot.                                                           |
-| `InfiniteEncumberedStamina`  | `false` | `true` | Being over-weight is slow instead of a full stop.                                                                                                                   |
-| `InfiniteBuildingStamina`    | `false` | `true` |                                                                                                                                                                     |
-| `InfiniteFarmingStamina`     | `false` | `true` |                                                                                                                                                                     |
-| `InfiniteMiningStamina`      | `false` | `true` |                                                                                                                                                                     |
-| `InfiniteWoodCuttingStamina` | `false` | `true` |                                                                                                                                                                     |
-| `InfiniteSneakingStamina`    | `false` | `true` |                                                                                                                                                                     |
-| `InfiniteSwimmingStamina`    | `false` | `true` |                                                                                                                                                                     |
+| Setting                        | Default   | Set to   |
+| ------------------------------ | --------- | -------- |
+| `CanSacrificeMegingjord`     | `false` | `true` |
+| `CanSacrificeCryptKey`       | `false` | `true` |
+| `InfiniteEncumberedStamina`  | `false` | `true` |
+| `InfiniteBuildingStamina`    | `false` | `true` |
+| `InfiniteFarmingStamina`     | `false` | `true` |
+| `InfiniteMiningStamina`      | `false` | `true` |
+| `InfiniteWoodCuttingStamina` | `false` | `true` |
+| `InfiniteSneakingStamina`    | `false` | `true` |
+| `InfiniteSwimmingStamina`    | `false` | `true` |
 
 The infinite-stamina options don't disable the stamina bar — it still drains,
 and tops back up just enough to continue when nearly empty. Combat stamina is
@@ -84,15 +84,15 @@ world's `StaminaRate` global key instead.
 
 ### ArgusMagnus.ServersideQoL.AutoPortalHub.cfg
 
-| Setting                | Default   | Set to   | Why                                                                                                                                              |
-| ---------------------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `AutoNameNewPortals` | `false` | `true` | The hub identifies portals by tag; untagged portals get an entry with a blank sign. Auto-naming gives`Meadows 01`, `Swamp 03` etc. for free. |
+| Setting                | Default   | Set to   |
+| ---------------------- | --------- | -------- |
+| `AutoNameNewPortals` | `false` | `true` |
 
 ### ArgusMagnus.ServersideQoL.AutoStore.cfg
 
-| Setting                               | Default      | Set to       | Why                                                                             |
-| ------------------------------------- | ------------ | ------------ | ------------------------------------------------------------------------------- |
-| `StackInventoryIntoContainersEmote` | `-1` (off) | `ThumbsUp` | Emote to stack your inventory into nearby chests that already hold those items. |
+| Setting                               | Default      | Set to       |
+| ------------------------------------- | ------------ | ------------ |
+| `StackInventoryIntoContainersEmote` | `-1` (off) | `ThumbsUp` |
 
 Deliberately left off: `AutoPickup`. It would drag dropped items into chests
 automatically, but it activates `AutoPickupRequestOwnership`, which the mod's
@@ -109,10 +109,10 @@ Both of these reassign Valheim's network ownership of an object to a specific
 player, so the person who cares most about an object's behaviour is the one
 simulating it.
 
-| Setting                                | Default   | Set to   | Why                                                                                                        |
-| -------------------------------------- | --------- | -------- | ---------------------------------------------------------------------------------------------------------- |
-| `AssignShipsToCaptain`               | `false` | `true` | Ownership to whoever is steering. Removes desync-driven collisions with terrain and waves (not with mobs). |
-| `AssignInteractablesToClosestPlayer` | `false` | `true` | Smelters, cooking stations etc. to the nearest player, to stop losing materials to networking issues.      |
+| Setting                                | Default   | Set to   |
+| -------------------------------------- | --------- | -------- |
+| `AssignShipsToCaptain`               | `false` | `true` |
+| `AssignInteractablesToClosestPlayer` | `false` | `true` |
 
 Deliberately left off: `AssignMobsToClosestPlayer`. Ships and workstations have
 one natural owner, but "closest player" is ambiguous when several people fight
@@ -125,59 +125,59 @@ reasoning above is ours.
 
 ### ArgusMagnus.ServersideQoL.Skills.cfg
 
-| Setting                                       | Default | Set to | Why                                                                                                                                                                                                                                                                                                                                                                          |
-| --------------------------------------------- | ------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `[Pickaxe] RockCollapseThresholdAtMinSkill` | `100` | `40` | Percentage of a rock/ore deposit's parts that must be destroyed before the rest collapses, at pickaxe skill 0. Scales linearly to`RockCollapseThresholdAtMaxSkill` (kept at `0`) at skill 100. At the default, a fresh character gets no benefit at all and the feature only pays off late; starting at 40% means mining is already ~2.5x faster from the first pickaxe. |
+| Setting                                       | Default | Set to |
+| --------------------------------------------- | ------- | ------ |
+| `[Pickaxe] RockCollapseThresholdAtMinSkill` | `100` | `40` |
 
 
 ### ArgusMagnus.ServersideQoL.TameAssist.cfg
 
-| Setting                                | Default   | Set to   | Why                                                                                                        |
-| -------------------------------------- | --------- | -------- | ---------------------------------------------------------------------------------------------------------- |
-| `[TameAssist] MakeCommandable`       | `false` | `true` | Every tame can be told to follow/stay like a wolf, so boars and lox can be moved around instead of herded. |
-| `[TameAssist] FedDurationMultiplier` | `1`     | `4`    | Tames stay fed four times as long after eating, so pens need topping up far less often.                    |
+| Setting                                | Default   | Set to   |
+| -------------------------------------- | --------- | -------- |
+| `[TameAssist] MakeCommandable`       | `false` | `true` |
+| `[TameAssist] FedDurationMultiplier` | `1`     | `4`    |
 
 ### ArgusMagnus.ServersideQoL.Backpack.cfg
 
-| Setting               | Default           | Set to   | Why                                                                                               |
-| --------------------- | ----------------- | -------- | ------------------------------------------------------------------------------------------------- |
-| `OpenBackpackEmote` | `Wave`          | `Vibe` | Wave is used socially; Vibe is a dedicated trigger so the backpack doesn't pop open mid-greeting. |
-| `MaxBackpackWeight` | `0` (unlimited) | `600` | Weight cap so the backpack is a pocket for odds and ends, not a second unlimited inventory. Raised from 300 on 2026-09-19. |
-| `BackpackOnDeath` | `SameAsInventory` | `Keep` | Backpack contents survive death instead of going to the tombstone, so odds and ends aren't lost on a corpse run. |
+| Setting               | Default           | Set to   |
+| --------------------- | ----------------- | -------- |
+| `OpenBackpackEmote` | `Wave`          | `Vibe` |
+| `MaxBackpackWeight` | `0` (unlimited) | `600` |
+| `BackpackOnDeath` | `SameAsInventory` | `Keep` |
 
 ### ArgusMagnus.ServersideQoL.AutoDoors.cfg
 
-| Setting                      | Default | Set to | Why                                                                                                   |
-| ---------------------------- | ------- | ------ | ----------------------------------------------------------------------------------------------------- |
-| `Enabled`                    | `true`  | `false` | TODO: reason not given yet.                                                                          |
-| `AutoCloseMinOpenSeconds`    | `2`     | `30`   | Doors stay open long enough to carry things through or for a group to follow, instead of closing almost immediately. |
+| Setting                      | Default | Set to |
+| ---------------------------- | ------- | ------ |
+| `Enabled`                    | `true`  | `false` |
+| `AutoCloseMinOpenSeconds`    | `2`     | `30`   |
 
 ### com.Fire.FiresGhettoNetworkMod.cfg
 
 Enabled 2026-09-19. Unlike the ServersideQoL family this mod may rewrite its
 cfg on shutdown, so edit it with the game stopped (`scripts/restart.sh` flow).
 
-| Setting                         | Default | Set to | Why                                                                                                                         |
-| ------------------------------- | ------- | ------ | --------------------------------------------------------------------------------------------------------------------------- |
-| `Enable Server-Side Simulation` | `false` | `true` | Make the dedicated server authoritative over zones, monster AI and events. The EXPERIMENTAL ZDO ownership-transfer toggles stay off, so peers still own their ZDOs (`sim: ON · own: vanilla peer` in the FGN load summary). |
+| Setting                         | Default | Set to |
+| ------------------------------- | ------- | ------ |
+| `Enable Server-Side Simulation` | `false` | `true` |
 
 ### torokal.afkmanager.cfg
 
 Installed 2026-09-25 (`Torokal/AFKManager`). Not part of the ServersideQoL
 family, so edit it with the game stopped.
 
-| Setting                | Default | Set to  | Why                         |
-| ---------------------- | ------- | ------- | --------------------------- |
-| `AfkAfterMinutes`      | `10`    | `5`     | TODO: reason not given yet. |
-| `AnnounceInChat`       | `true`  | `false` | TODO: reason not given yet. |
-| `AnnounceNotification` | `true`  | `false` | TODO: reason not given yet. |
-| `ManualAfkEmote`       | `rest`  | `sit`   | TODO: reason not given yet. |
+| Setting                | Default | Set to  |
+| ---------------------- | ------- | ------- |
+| `AfkAfterMinutes`      | `10`    | `5`     |
+| `AnnounceInChat`       | `true`  | `false` |
+| `AnnounceNotification` | `true`  | `false` |
+| `ManualAfkEmote`       | `rest`  | `sit`   |
 
 ### ArgusMagnus.ServersideQoL.PortalProgression.cfg
 
-| Setting       | Default | Set to | Why                         |
-| ------------- | ------- | ------ | --------------------------- |
-| `PortalRange` | `4`     | `2`    | TODO: reason not given yet. |
+| Setting       | Default | Set to |
+| ------------- | ------- | ------ |
+| `PortalRange` | `4`     | `2`    |
 
 ## Notable defaults we are keeping
 
