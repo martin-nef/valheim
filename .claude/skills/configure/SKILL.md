@@ -81,6 +81,5 @@ pending.
 
 `mod-settings.md` is the record of every non-default value. Add or update the
 row under `### <file>.cfg` in "Non-default values" (create the subsection if
-the file has none), with Setting / Default / Set to / Why, where Why is the
-user's reason in one or two sentences. If they set something back to its
+the file has none), with Setting / Default / Set to. If they set something back to its
 default, remove the row. Do not commit unless asked.

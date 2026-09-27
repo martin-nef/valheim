@@ -139,11 +139,10 @@ reasoning above is ours.
 
 ### ArgusMagnus.ServersideQoL.Backpack.cfg
 
-| Setting               | Default           | Set to   |
-| --------------------- | ----------------- | -------- |
-| `OpenBackpackEmote` | `Wave`          | `Vibe` |
-| `MaxBackpackWeight` | `0` (unlimited) | `600` |
-| `BackpackOnDeath` | `SameAsInventory` | `Keep` |
+| Setting                | Default           | Set to |
+| ---------------------- | ----------------- | ------ |
+| `OpenBackpackEmote`    | `Wave`            | `Vibe` |
+| `BackpackOnDeath`      | `SameAsInventory` | `Keep` |
 
 ### ArgusMagnus.ServersideQoL.AutoDoors.cfg
 
