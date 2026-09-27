@@ -135,6 +135,9 @@ spec:
                   mv "$f" "$new"
                 done
 
+                # some packages nest everything under BepInEx/ (e.g. BepInEx/plugins/)
+                [ -d "$d/BepInEx" ] && d="$d/BepInEx"
+
                 if [ -d "$d/plugins" ]; then
                   cp -a "$d/plugins/." "$cfg.new/plugins/"
                 else
