@@ -5,12 +5,14 @@
 
 ValheimModding/YamlDotNet
 ArgusMagnus/ServersideQoL
-#ArgusMagnus/ServersideQoL_AutoDoors
+ArgusMagnus/ServersideQoL_AdminOptions
+ArgusMagnus/ServersideQoL_AutoDoors
 ArgusMagnus/ServersideQoL_AutoPortalHub
 ArgusMagnus/ServersideQoL_AutoProcess
 ArgusMagnus/ServersideQoL_AutoStore
 ArgusMagnus/ServersideQoL_Backpack
 ArgusMagnus/ServersideQoL_ContainerSigns
+ArgusMagnus/ServersideQoL_ControlCenter
 ArgusMagnus/ServersideQoL_JustSleep
 ArgusMagnus/ServersideQoL_LetItFloat
 ArgusMagnus/ServersideQoL_Player
@@ -18,6 +20,7 @@ ArgusMagnus/ServersideQoL_PortalProgression
 ArgusMagnus/ServersideQoL_Skills
 ArgusMagnus/ServersideQoL_SmartDefense
 ArgusMagnus/ServersideQoL_TameAssist
+SevDevonne/ValeriusNoobShield
 Torokal/AFKManager
 
 ValheimModding/Jotunn

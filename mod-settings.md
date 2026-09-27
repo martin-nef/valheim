@@ -150,7 +150,8 @@ reasoning above is ours.
 | Setting                      | Default | Set to |
 | ---------------------------- | ------- | ------ |
 | `Enabled`                    | `true`  | `false` |
-| `AutoCloseMinOpenSeconds`    | `2`     | `30`   |
+| `AutoCloseMinPlayerDistance` | `4`     | `2`    |
+| `AutoCloseMinOpenSeconds`    | `2`     | `600`  |
 
 ### com.Fire.FiresGhettoNetworkMod.cfg
 
