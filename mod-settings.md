@@ -23,11 +23,6 @@ kubectl -n valheim delete pod valheim-0   # not rollout restart — see CLAUDE.m
 Deleting a `.cfg` regenerates it at defaults on next start, which is the way
 back if one of these turns out to be a bad idea.
 
-The one exception to editing in place is ValheimTune, whose settings *are*
-declarative — see `VTCFG_*` and `POST_BEPINEX_CONFIG_HOOK` in the ConfigMap.
-The image's `env2cfg` merges those into the cfg on every boot, so editing
-`akoozie.valheimtune.cfg` by hand will not survive a restart.
-
 ## World modifiers
 
 Vanilla world modifiers are *not* mod settings, but they are server state that

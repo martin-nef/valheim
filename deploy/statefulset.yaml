@@ -26,10 +26,10 @@ spec:
       terminationGracePeriodSeconds: 35
       initContainers:
         # Installs the Thunderstore packages listed in MODS into the /config
-        # PVC. The server image rsyncs /config/bepinex/plugins/ into the live
-        # BepInEx install on every boot; the POST_BEPINEX_CONFIG_HOOK in the
-        # ConfigMap does the same for patchers and adds --delete, so dropping a
-        # mod from MODS actually uninstalls it.
+        # PVC. The server image syncs /config/bepinex/plugins/ and patchers/
+        # into the live BepInEx install on every boot and update, and prunes
+        # what was removed from /config, so dropping a mod from MODS actually
+        # uninstalls it.
         - name: mods
           image: alpine:3.20
           envFrom:
