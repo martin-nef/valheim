@@ -23,11 +23,6 @@ Never pick a `.default` or `.old` file. If nothing matches or several files
 do, show the listing and ask. If the mod is not in `MODS` at all, say so and
 stop — configuring a mod that isn't installed is a mistake.
 
-Special case: `akoozie.valheimtune.cfg` is **not** edited in place. Its
-values are declarative via `VTCFG_*` in `deploy/config.env` and
-regenerated on every boot (see mod-settings.md). Present the knobs the same
-way, but apply changes as a git edit to the ConfigMap instead of step 3.
-
 ## 2. Present the knobs
 
 `cat` the file. The BepInEx format is:
