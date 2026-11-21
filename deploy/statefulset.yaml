@@ -24,6 +24,9 @@ spec:
                     values:
                       - shitbox
       terminationGracePeriodSeconds: 35
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       initContainers:
         # Installs the Thunderstore packages listed in MODS into the /config
         # PVC. The server image syncs /config/bepinex/plugins/ and patchers/
@@ -32,6 +35,13 @@ spec:
         # uninstalls it.
         - name: mods
           image: alpine:3.20
+          # Root for apk, but only with what it needs to write into the
+          # valheim-owned /config (cp -a keeps owners and modes).
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+              add: ["CHOWN", "DAC_OVERRIDE", "FOWNER"]
           envFrom:
             - configMapRef:
                 name: config
@@ -172,6 +182,17 @@ spec:
         - name: valheim
           image: lloesche/valheim-server:latest
           imagePullPolicy: Always
+          # The image has to start as root: bootstrap rewrites /etc/passwd for
+          # PUID/PGID and chowns the volumes, and supervisord, crond and
+          # syslogd run as root. The game, updater and backup run as PUID
+          # (config.env). Dropping to that user is a plain setuid(), which
+          # no_new_privs allows, so escalation can still be blocked; and root
+          # keeps only the capabilities bootstrap and supervisord use.
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+              add: ["CHOWN", "DAC_OVERRIDE", "FOWNER", "SETUID", "SETGID", "KILL"]
           resources:
             requests:
               memory: "2Gi"
